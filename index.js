@@ -1,6 +1,6 @@
 const Express = require('express');
 const app = Express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3002;
 const http = require("http");
 const https = require("https");
 
@@ -8,17 +8,21 @@ http.globalAgent.maxSockets = Infinity;
 https.globalAgent.maxSockets = Infinity;
 process.setMaxListeners(Infinity);
 
-var gplay = require('google-play-scraper');
 
-// gplay.app({appId: 'com.woobest.crown.aus'})
+
+var gplay = require('apt-google-play-scraper');
+
+// gplay.app({appId: 'in.dreamgamestudios.games.sports.dreamcricket3d'})
 //   .then(console.log, console.log);
 
 
 
+
+  
   app.get("/package", async(req, res) => {
     const id = req.query.id
     gplay.app({appId: id}).then((data)=> {
-    console.log(data);
+    // console.log(data);
     res.status(200).json({data})
   });
 
@@ -28,8 +32,8 @@ var gplay = require('google-play-scraper');
   app.get("/", (req, res) => {
     res.setHeader("Cache-Control", "public,max-age=0");
     res.status(200).json({
-        status: 'ok',
-        webSite: 'vijay'
+        Author: 'Godxthemes',
+        Developer: 'Vijay'
     })
 })
 
